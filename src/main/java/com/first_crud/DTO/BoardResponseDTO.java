@@ -3,18 +3,12 @@ package com.first_crud.DTO;
 import com.first_crud.entity.Board;
 import lombok.Getter;
 
-import java.time.LocalDate;
-import java.util.Date;
-
-import static org.apache.tomcat.util.http.FastHttpDateFormat.getCurrentDate;
-
 @Getter
 public class BoardResponseDTO {
     private Long id;
     private String title;
     private String username;
     private String contents;
-    private LocalDate regDate;
     private String pw;
 
     public BoardResponseDTO(Board board) {
@@ -22,9 +16,15 @@ public class BoardResponseDTO {
         this.title = board.getTitle();
         this.username = board.getUsername();
         this.contents = board.getContents();
-        this.regDate = LocalDate.now();
         this.pw = board.getPw();
     }
 
 
+    public BoardResponseDTO(Long id, String username, String contents, String pw, String title) {
+        this.id= id;
+        this.username=username;
+        this.contents=contents;
+        this.pw=pw;
+        this.title=title;
+    }
 }

@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 
 @Getter
 @Setter
@@ -17,7 +14,6 @@ public class Board {
     private String title;
     private String username;
     private String contents;
-    private LocalDate regDate;
     private String pw;
 
 
@@ -25,7 +21,6 @@ public class Board {
         this.title = requestDTO.getTitle();
         this.username = requestDTO.getUsername();
         this.contents = requestDTO.getContents();
-        this.regDate = LocalDate.now();
         this.pw = requestDTO.getPw();
     }
 
@@ -33,12 +28,13 @@ public class Board {
         this.username = boardRequestDTO.getUsername();
         this.title = boardRequestDTO.getTitle();
         this.contents = boardRequestDTO.getContents();
+        this.pw = boardRequestDTO.getPw();
     }
 
-    public String getFormatCreatedAt() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return regDate.format(formatter);
-    }
+//    public String getFormatCreatedAt() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        return regDate.format(formatter);
+//    }
 
 
 }
