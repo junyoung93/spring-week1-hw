@@ -1,20 +1,31 @@
 package com.first_crud.entity;
 
 import com.first_crud.DTO.BoardRequestDTO;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+@Entity
+@Table(name = "board")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Board {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+    @Column(name = "username", nullable = false)
     private String username;
+    @Column(name = "title", nullable = false)
+    private String title;
+    @Column(name = "contents", nullable = false,length = 500)
     private String contents;
+    @Column(name = "pw", columnDefinition = "VARCHAR(255) DEFAULT 'default_password'")
     private String pw;
+
+
 
 
     public Board(BoardRequestDTO requestDTO) {
@@ -29,12 +40,6 @@ public class Board {
         this.title = boardRequestDTO.getTitle();
         this.contents = boardRequestDTO.getContents();
         this.pw = boardRequestDTO.getPw();
+
     }
-
-//    public String getFormatCreatedAt() {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        return regDate.format(formatter);
-//    }
-
-
 }

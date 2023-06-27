@@ -3,10 +3,13 @@ package com.first_crud.repository;
 import com.first_crud.DTO.BoardRequestDTO;
 import com.first_crud.DTO.BoardResponseDTO;
 import com.first_crud.entity.Board;
+import jakarta.persistence.EntityManager;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+@Repository
 public class BoardRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -27,7 +31,7 @@ public class BoardRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder(); // 기본 키를 반환받기 위한 객체
 
         String sql = "INSERT INTO board (username, contents, pw, title) VALUES (?, ?, ?, ?)";
-//        String sql = "INSERT INTO board (username, contents) VALUES (?, ?)";
+
 
         jdbcTemplate.update(con -> {
                     PreparedStatement preparedStatement = con.prepareStatement(sql,
@@ -110,5 +114,15 @@ public class BoardRepository {
         }, id);
     }
 
+    @Transactional
+    public Board createBoard(EntityManager em) {
+        Board memo = em.find(Board.class, 1);
+        memo.setUsername("이름테스트");
+        memo.setContents("@Transactional 전파 테스트 중!");
+        memo.setTitle("@Transactional 타이틀");
+        memo.setPw("@Transactional 123");
 
+        System.out.println("createBoard 메서드 종료");
+        return memo;
+    }
 }
