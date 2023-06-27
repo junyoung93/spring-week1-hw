@@ -3,6 +3,7 @@ package com.first_crud.controller;
 import com.first_crud.DTO.BoardRequestDTO;
 import com.first_crud.DTO.BoardResponseDTO;
 import com.first_crud.service.BoardService;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

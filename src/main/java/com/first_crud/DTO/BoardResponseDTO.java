@@ -3,6 +3,8 @@ package com.first_crud.DTO;
 import com.first_crud.entity.Board;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class BoardResponseDTO {
     private Long id;
@@ -10,6 +12,9 @@ public class BoardResponseDTO {
     private String username;
     private String contents;
     private String pw;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
+
 
     public BoardResponseDTO(Board board) {
         this.id = board.getId();
@@ -17,14 +22,10 @@ public class BoardResponseDTO {
         this.username = board.getUsername();
         this.contents = board.getContents();
         this.pw = board.getPw();
+        this.createdAt = board.getCreatedAt();
+        this.modifiedAt = board.getModifiedAt();
     }
 
 
-    public BoardResponseDTO(Long id, String username, String contents, String pw, String title) {
-        this.id= id;
-        this.username=username;
-        this.contents=contents;
-        this.pw=pw;
-        this.title=title;
-    }
+
 }

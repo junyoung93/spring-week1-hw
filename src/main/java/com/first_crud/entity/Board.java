@@ -1,10 +1,14 @@
 package com.first_crud.entity;
 
 import com.first_crud.DTO.BoardRequestDTO;
+import com.first_crud.DTO.BoardResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.sql.Time;
+import java.time.LocalDate;
 
 
 @Entity
@@ -12,17 +16,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Board {
+public class Board extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "username", nullable = false)
+    @Column
     private String username;
-    @Column(name = "title", nullable = false)
+    @Column
     private String title;
-    @Column(name = "contents", nullable = false,length = 500)
+    @Column
     private String contents;
-    @Column(name = "pw", columnDefinition = "VARCHAR(255) DEFAULT 'default_password'")
+    @Column(nullable = false)
     private String pw;
 
 
@@ -42,4 +46,6 @@ public class Board {
         this.pw = boardRequestDTO.getPw();
 
     }
+
+
 }
