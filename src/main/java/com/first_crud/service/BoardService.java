@@ -15,10 +15,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    /*
-    BoardService가 생성이 될 때 파라미터로 jdbcTemplate 받아오고
-    boardRepository 만들어서 jdbcTemplate를 받아온다
-     */
+
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }

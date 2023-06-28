@@ -1,20 +1,16 @@
 package com.first_crud.entity;
 
 import com.first_crud.DTO.BoardRequestDTO;
-import com.first_crud.DTO.BoardResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
-import java.time.LocalDate;
-
 
 @Entity
 @Table(name = "board")
 @Getter
-@Setter
+//@Setter
 @NoArgsConstructor
 public class Board extends Timestamped {
     @Id
